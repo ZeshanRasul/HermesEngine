@@ -10,7 +10,23 @@
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x64_x64" ],
-      "variables": []
+      "variables": [
+        {
+          "name": "ASSIMP_INCLUDE_DIR",
+          "value": "C:/dev/HermesEngine/include/assimp",
+          "type": "PATH"
+        },
+        {
+          "name": "ASSIMP_LIBRARY",
+          "value": "C:/Program Files/assimp/lib/assimp-vc140-md.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "ASSIMP_ZLIB_LIBRARY",
+          "value": "C:/Program Files/assimp/lib/zlibstatic.lib",
+          "type": "FILEPATH"
+        }
+      ]
     }
   ]
 }

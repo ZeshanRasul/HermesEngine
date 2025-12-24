@@ -36,7 +36,7 @@ endif()
 # Put user specified location at beginning of search
 if( ASSIMP_ROOT )
 	list( INSERT _assimp_HEADER_SEARCH_DIRS 0 "${ASSIMP_ROOT}/include" )
-	list( INSERT _assimp_LIB_SEARCH_DIRS 0 "${ASSIM_ROOT}/lib" )
+	list( INSERT _assimp_LIB_SEARCH_DIRS 0 "${ASSIMP_ROOT}/lib" )
 endif()
 
 # Search for the header
@@ -44,7 +44,7 @@ FIND_PATH(ASSIMP_INCLUDE_DIR "assimp/Importer.hpp"
 PATHS ${_assimp_HEADER_SEARCH_DIRS} )
 
 # Search for the libraies
-FIND_LIBRARY(ASSIMP_LIBRARY NAMES assimp
+FIND_LIBRARY(ASSIMP_LIBRARY NAMES assimp-vc140-md assimp-vc143-mt-s assimp-vc142-mt-s assimp-s assimp
 PATHS ${_assimp_LIB_SEARCH_DIRS} )
 
 # Search for the libraies

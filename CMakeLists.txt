@@ -239,3 +239,24 @@ else()
   # Clang and GCC may need libstd++ and libmath
   target_link_libraries(${PROJECT_NAME} PRIVATE ${GLFW3_LIBRARY} ${ASSIMP_LIBRARY} ${ASSIMP_ZLIB_LIBRARY} OpenGL::GL yaml-cpp stdc++ m)
 endif()
+
+get_filename_component(ASSIMP_LIB_DIR "${ASSIMP_LIBRARY}" DIRECTORY)
+
+# Search for the DLL in likely locations (../bin or same folder as lib)
+find_file(ASSIMP_DLL
+    NAMES assimp-vc143-mt.dll assimp-vc142-mt.dll assimp-vc140-md.dll assimp.dll
+    PATHS "${ASSIMP_LIB_DIR}/../bin" "${ASSIMP_LIB_DIR}"
+    NO_DEFAULT_PATH
+)
+
+if(ASSIMP_DLL)
+    message(STATUS "Found Assimp DLL: ${ASSIMP_DLL}")
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${ASSIMP_DLL}"
+        "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+        COMMENT "Copying Assimp DLL to output directory"
+    )
+else()
+    message(WARNING "Could not find Assimp DLL. You must manually copy it to the build folder.")
+endif()
